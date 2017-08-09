@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<configurations>
+    <configuration>
+        <sourcePath>/home/ssw/Desktop/IHS</sourcePath>
+        <targetPath>hdfs://localhost:9000/ihs</targetPath>
+        <initTime>2017-08-01-23-59-59</initTime>
+        <cron>0 0 9 * * ? </cron>
+    </configuration>
+</configurations>

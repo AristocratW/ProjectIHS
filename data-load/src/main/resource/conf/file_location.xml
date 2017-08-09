@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configurations>
+    <configuration>
+        <sourcePath>/home/ssw/Desktop/IHS</sourcePath>
+        <initTime>2017-08-01-23-59-59</initTime>
+        <cron>*/40 * * * * ? </cron>
+    </configuration>
+</configurations>
