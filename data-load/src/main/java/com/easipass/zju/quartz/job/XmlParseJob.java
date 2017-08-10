@@ -34,7 +34,7 @@ public class XmlParseJob implements Job {
             Class model;
             for(String s : filePaths){
                 model = Class.forName("com.easipass.zju.model."+FileUtil.getReportFileType(s));
-                if(FileUtil.getReportFileType(s).equals("ShipData")){
+                if(FileUtil.getReportFileType(s).equals("CombinedPositionsData")){
                     resolver = ResolverFactory.getResolver(FileUtil.getReportFileType(s));
                     InputStream inputStream = new FileInputStream(new File(s));
                     saxParser.parse(inputStream, resolver);

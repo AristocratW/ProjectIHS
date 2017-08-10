@@ -2,8 +2,8 @@
 
 <configurations>
     <configuration>
-        <sourcePath>/home/ssw/Desktop/IHS</sourcePath>
-        <targetPath>hdfs://localhost:9000/ihs</targetPath>
+        <sourcePath>/Users/Wangxuyang/Documents/ZhejiangUniversity/Intern/2017/IHS</sourcePath>
+        <targetPath>hdfs://master:9000/IHS</targetPath>
         <initTime>2017-08-01-23-59-59</initTime>
         <cron>0 0 9 * * ? </cron>
     </configuration>

@@ -1,6 +1,5 @@
 package com.easipass.zju.util;
 
-import com.easipass.zju.model.ShipData;
 import com.easipass.zju.model.SourceFileInfo;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
@@ -20,7 +19,7 @@ public class FileUtil {
     }
 
     public static SourceFileInfo getSourceFileInfo() throws ConfigurationException {
-        Configuration configuration = new XMLConfiguration("conf/file_location.xml");
+        Configuration configuration = new XMLConfiguration("conf/file_location_mac.xml");
         SourceFileInfo sourceFile = new SourceFileInfo();
         sourceFile.setSourcePath(configuration.getString("configuration.sourcePath"));
         sourceFile.setInitTime(configuration.getString("configuration.initTime"));
