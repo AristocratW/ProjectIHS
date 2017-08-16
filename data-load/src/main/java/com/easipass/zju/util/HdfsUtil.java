@@ -28,7 +28,7 @@ public class HdfsUtil {
 
     public void mkdir(String dir) throws IOException {
         Path path = new Path(dir);
-        FileSystem fileSystem = FileSystem.get(configuration);
+        FileSystem fileSystem = FileSystem.get(getConfiguration());
         if(!fileSystem.exists(path)){
             fileSystem.mkdirs(path);
             System.out.println("Create: " + dir);
@@ -38,7 +38,7 @@ public class HdfsUtil {
 
     public void rmdir(String dir) throws IOException {
         Path path = new Path(dir);
-        FileSystem fileSystem = FileSystem.get(configuration);
+        FileSystem fileSystem = FileSystem.get(getConfiguration());
         fileSystem.deleteOnExit(path);
         System.out.println("Delete: " + dir);
         fileSystem.close();
@@ -47,7 +47,7 @@ public class HdfsUtil {
     public void renamedir(String srcdir, String dstdir) throws IOException {
         Path src = new Path(srcdir);
         Path dst = new Path(dstdir);
-        FileSystem fileSystem = FileSystem.get(configuration);
+        FileSystem fileSystem = FileSystem.get(getConfiguration());
         fileSystem.rename(src,dst);
         System.out.println("Rename: from "+ srcdir+" to "+ dstdir);
         fileSystem.close();
@@ -55,7 +55,7 @@ public class HdfsUtil {
 
     public void ls(String dir) throws IOException {
         Path path = new Path(dir);
-        FileSystem fileSystem = FileSystem.get(configuration);
+        FileSystem fileSystem = FileSystem.get(getConfiguration());
         FileStatus[] list = fileSystem.listStatus(path);
         System.out.println("List: " + dir);
         System.out.println("=============================================================");
@@ -66,9 +66,22 @@ public class HdfsUtil {
         fileSystem.close();
     }
 
+    public void upload(String dir, String dst) throws IOException {
+        Path source = new Path(dir);
+        Path target = new Path(dst);
+        FileSystem fileSystem = FileSystem.get(getConfiguration());
+        fileSystem.copyFromLocalFile(source,target);
+        fileSystem.close();
+    }
+
+    public void download(String dir) throws IOException {
+        Path path = new Path(dir);
+        FileSystem fileSystem = FileSystem.get(getConfiguration());
+        fileSystem.close();
+    }
+
         public static void main(String[] args) throws IOException {
             HdfsUtil hdfsUtil = new HdfsUtil();
-            hdfsUtil.mkdir("/IHS");
-            hdfsUtil.ls("/");
+            hdfsUtil.ls("/IHS_BACKUP");
     }
 }
