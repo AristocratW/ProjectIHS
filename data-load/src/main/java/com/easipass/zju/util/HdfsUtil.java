@@ -7,6 +7,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hdfs.HdfsConfiguration;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by ssw on 17-8-2.
@@ -74,14 +75,19 @@ public class HdfsUtil {
         fileSystem.close();
     }
 
-    public void download(String dir) throws IOException {
-        Path path = new Path(dir);
+    public void upload(List<String> dirs, String dst) throws IOException {
         FileSystem fileSystem = FileSystem.get(getConfiguration());
+        Path target = new Path(dst);
+        Path source;
+        for (String s:dirs){
+            source = new Path(s);
+            fileSystem.copyFromLocalFile(source,target);
+        }
         fileSystem.close();
     }
 
         public static void main(String[] args) throws IOException {
             HdfsUtil hdfsUtil = new HdfsUtil();
-            hdfsUtil.ls("/IHS_BACKUP");
+            hdfsUtil.ls("/IHS_BACKUP/CombinedPositionsData");
     }
 }

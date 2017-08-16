@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
-<configurations>
-    <configuration>
-        <sourcePath>/Users/Wangxuyang/Documents/ZhejiangUniversity/Intern/2017/IHS</sourcePath>
-        <initTime>2017-08-01-23-59-59</initTime>
-        <cron>*/40 * * * * ? </cron>
-    </configuration>
-</configurations>

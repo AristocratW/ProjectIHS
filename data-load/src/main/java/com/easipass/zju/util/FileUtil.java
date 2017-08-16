@@ -1,9 +1,6 @@
 package com.easipass.zju.util;
 
-import com.easipass.zju.model.SourceFileInfo;
-import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.XMLConfiguration;
 
 import java.io.File;
 import java.util.HashSet;
@@ -18,14 +15,6 @@ public class FileUtil {
         return filesPath;
     }
 
-    public static SourceFileInfo getSourceFileInfo() throws ConfigurationException {
-        Configuration configuration = new XMLConfiguration("conf/file_location_mac.xml");
-        SourceFileInfo sourceFile = new SourceFileInfo();
-        sourceFile.setSourcePath(configuration.getString("configuration.sourcePath"));
-        sourceFile.setInitTime(configuration.getString("configuration.initTime"));
-        sourceFile.setCron(configuration.getString("configuration.cron"));
-        return sourceFile;
-    }
     public static void setFilesPath(String sourcePath){
         File sourceFile = new File(sourcePath);
         if(sourceFile.exists()){
@@ -72,7 +61,19 @@ public class FileUtil {
         return type;
     }
 
-    public static void main(String[] args) throws ConfigurationException {
+    public static void deleteDir(String path){
+        File file = new File(path);
+        if(file.isDirectory()){
+            String[] subFiles = file.list();
+            for(String f : subFiles){
+                deleteDir(f);
+            }
+            file.delete();
+        }else {
+            file.delete();
+        }
+    }
 
+    public static void main(String[] args) throws ConfigurationException {
     }
 }

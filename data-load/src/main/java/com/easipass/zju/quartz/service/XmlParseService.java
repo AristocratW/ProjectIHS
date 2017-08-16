@@ -1,8 +1,7 @@
 package com.easipass.zju.quartz.service;
 
 import com.easipass.zju.quartz.job.XmlParseJob;
-import com.easipass.zju.util.FileUtil;
-import org.apache.commons.configuration.ConfigurationException;
+import com.easipass.zju.util.ConfInfoUtil;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
@@ -23,9 +22,9 @@ public class XmlParseService {
 
         try {
             scheduler = schedulerFactory.getScheduler();
-            cron = FileUtil.getSourceFileInfo().getCron();
-            sourcePath = FileUtil.getSourceFileInfo().getSourcePath();
-            initTime = FileUtil.getSourceFileInfo().getInitTime();
+            cron = ConfInfoUtil.getProperty("cron.xmlParseJob");
+            sourcePath = ConfInfoUtil.getProperty("local.source");
+            initTime = ConfInfoUtil.getProperty("inittime");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
             Date date = simpleDateFormat.parse(initTime);
             JobDataMap jobDataMap = new JobDataMap();
@@ -35,8 +34,6 @@ public class XmlParseService {
             scheduler.scheduleJob(jobDetail,trigger);
             scheduler.start();
         } catch (SchedulerException e) {
-            e.printStackTrace();
-        } catch (ConfigurationException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();

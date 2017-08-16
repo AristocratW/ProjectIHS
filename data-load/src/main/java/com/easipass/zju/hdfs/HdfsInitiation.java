@@ -8,18 +8,18 @@ import java.io.IOException;
  * Created by Wangxuyang on 2017/8/16.
  */
 public class HdfsInitiation {
-    public static void init(){
+    public static void init(String root){
         HdfsUtil hdfsUtil = new HdfsUtil();
         try {
-            hdfsUtil.mkdir("/IHS_BACKUP/CombinedPositionsData");
-            hdfsUtil.mkdir("/IHS_BACKUP/MovementData");
-            hdfsUtil.mkdir("/IHS_BACKUP/PortsData");
-            hdfsUtil.mkdir("/IHS_BACKUP/ShipData");
+            hdfsUtil.mkdir(root+"/CombinedPositionsData");
+            hdfsUtil.mkdir(root+"/MovementData");
+            hdfsUtil.mkdir(root+"/PortsData");
+            hdfsUtil.mkdir(root+"/ShipData");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args){
-        init();
-    }
+//    public static void main(String[] args){
+//        init("/IHS_BACKUP");
+//    }
 }

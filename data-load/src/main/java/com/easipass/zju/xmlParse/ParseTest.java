@@ -1,7 +1,7 @@
 package com.easipass.zju.xmlParse;
 
+import com.easipass.zju.util.ConfInfoUtil;
 import com.easipass.zju.util.FileUtil;
-import org.apache.commons.configuration.ConfigurationException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -21,13 +21,11 @@ public class ParseTest {
 
     public static void main(String[] args){
         try{
-            FileUtil.setFilesPath(FileUtil.getSourceFileInfo().getSourcePath());
+            FileUtil.setFilesPath(ConfInfoUtil.getProperty("local.source"));
             HashSet<String> filePaths = FileUtil.getFilesPath();
             SAXParser saxParser = SAXParserFactory.newInstance().newSAXParser();
             Resolver resolver;
-            Class model;
             for(String s : filePaths){
-                model = Class.forName("com.easipass.zju.model."+FileUtil.getReportFileType(s));
                 if(FileUtil.getReportFileType(s).equals("ShipData")){
                     resolver = ResolverFactory.getResolver(FileUtil.getReportFileType(s));
                     InputStream inputStream = new FileInputStream(new File(s));
@@ -43,10 +41,6 @@ public class ParseTest {
         } catch (org.xml.sax.SAXException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ConfigurationException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
